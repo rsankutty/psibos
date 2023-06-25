@@ -9,6 +9,7 @@ const pacientsRoutes = Router();
 pacientsRoutes
     .all('/*', authMiddleware.authValidation)
     .post('/', validateSchema(pacientSchemma), pacientsControllers.registerPacient)
-    .get('/', pacientsControllers.listPacients);
+    .get('/', pacientsControllers.listPacients)
+    .post('/delete/:id', pacientsControllers.deletePacient);
 
 export default pacientsRoutes;

@@ -16,4 +16,13 @@ async function findAll(id) {
   return rows;
 }
 
-export default { create, findAll };
+
+async function deleteById(id, pacientId) {
+  const { rowCount } = await pacientsRepositories.findById(id, pacientId);
+  if (!rowCount) throw errors.notFoundError();
+  
+  await pacientsRepositories.deleteById(id, pacientId);
+	return "Successfully deleted"
+}
+
+export default { create, findAll, deleteById };

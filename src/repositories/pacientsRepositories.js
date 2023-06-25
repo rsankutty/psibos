@@ -26,7 +26,29 @@ async function findAll(id) {
           *
         FROM pacients
         WHERE userid = $1;`,
-        [id]
+    [id]
+  );
+}
+
+async function findById(id, pacientId) {
+  return await connectionDb.query(
+    `
+        SELECT 
+          *
+        FROM pacients
+        WHERE userid = $1 AND id= $2
+        ;`,
+    [id, pacientId]
+  );
+}
+
+async function deleteById(id, pacientId) {
+  return await connectionDb.query(
+    `
+    DELETE FROM pacients
+    WHERE userid = $1 AND id= $2
+    ;`,
+    [id, pacientId]
   );
 }
 
@@ -34,5 +56,7 @@ async function findAll(id) {
 export default {
   create,
   findByCpf,
-  findAll
+  findAll,
+  deleteById,
+  findById
 };
