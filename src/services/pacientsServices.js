@@ -12,7 +12,7 @@ async function create({ name, cpf, payerName, payerCpf, userId}) {
 
 async function findAll(id) {
   const { rows, rowCount } = await pacientsRepositories.findAll(id);
-  if (!rowCount) throw errors.notFoundError();
+  if (!rowCount) return []
   return rows;
 }
 
